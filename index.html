@@ -170,12 +170,15 @@ body.light .identity .ascii-title{color:#99172c;text-shadow:0 0 2px #ff7385,0 0 
 |        &gt; prenons_contact_      |
 +--------------------------------+</pre><h2>Analyser. Sécuriser. Contribuer.</h2><p>Je recherche un stage de 4 à 6 mois dès avril 2027, pour contribuer à des missions de détection, d’analyse et de sécurisation des systèmes.</p><a class="email-link" href="mailto:maktouradem@gmail.com">maktouradem@gmail.com ↗</a><p class="contact-location">Créteil (94) · Permis B · <a href="tel:+33678533800">+33 6 78 53 38 00</a></p><div class="social-links"><a href="https://github.com/A7d7m7" target="_blank" rel="noopener noreferrer">[ GitHub ↗ ]</a><a href="https://www.linkedin.com/in/makhtour-adem" target="_blank" rel="noopener noreferrer">[ LinkedIn ↗ ]</a><a href="#cv-choice" data-open-cv>[ télécharger mon CV ↓ ]</a></div><div class="terminal" id="cv-terminal" aria-label="Terminal de téléchargement des CV">
 <div class="terminal-head"><span aria-hidden="true">[ &gt;_ ]</span><span>cv_download.sh</span><span class="terminal-mode">PDF / téléchargement</span></div>
-<div class="terminal-menu"><p class="terminal-welcome">Choisis le CV qui correspond à ton domaine.</p><div id="cv-options" aria-label="CV disponibles"></div><p class="terminal-help">Saisis un numéro puis Entrée, ou sélectionne une option.<br><span>menu : afficher les CV · aide : commandes disponibles</span></p></div>
+<div class="terminal-menu"><p class="terminal-welcome">Choisis le CV qui correspond à ton domaine.</p><div id="cv-options" aria-label="CV disponibles"></div><p class="terminal-help">Saisis un numéro puis Entrée, ou sélectionne une option.<br><span>menu : afficher les CV · help : commandes disponibles</span></p></div>
 <p id="response" role="status" aria-live="polite" aria-atomic="true"></p>
 <form class="commandline" id="terminal"><label class="prompt" for="command">visiteur@adem:~$</label><input id="command" autocomplete="off" spellcheck="false" aria-label="Numéro du CV ou commande du terminal" placeholder="1 : CV cybersécurité"><button class="artbutton" type="submit" aria-label="Exécuter la commande">↵</button></form>
 <noscript><p><a href="cv-adem-makhtour.pdf" download="CV-Adem-Makhtour-Cybersecurite.pdf">Télécharger le CV cybersécurité (PDF)</a></p></noscript>
 </div></section>
-</main><div class="wrap"><footer><span>© <span id="year"></span> Adem Makhtour · Tous caractères compris.</span><a href="#accueil">Retour en haut ↑</a></footer></div>
+</main>
+<div class="simple-actions" aria-label="Actions du portfolio"><button type="button" id="simple-terminal-button">&gt;_ Passer en mode terminal</button><button type="button" id="simple-exit-button" aria-label="Fermer cet onglet">exit</button></div>
+<p id="exit-status" class="exit-status" role="status" aria-live="polite" hidden></p>
+<div class="wrap"><footer><span>© <span id="year"></span> Adem Makhtour · Tous caractères compris.</span><a href="#accueil">Retour en haut ↑</a></footer></div>
 <!-- Motion 14.9.1 — bundled locally, no CDN request at runtime. -->
 
 <dialog id="experience-choice" class="experience-dialog" aria-labelledby="experience-question" aria-describedby="experience-description">
@@ -189,8 +192,8 @@ body.light .identity .ascii-title{color:#99172c;text-shadow:0 0 2px #ff7385,0 0 
 <section id="terminal-experience" class="terminal-workspace" role="main" aria-label="Portfolio en mode terminal" hidden>
 <div class="explorer-heading"><h1>Adem Makhtour <span>/ terminal</span></h1><span class="explorer-indicator">● session ouverte</span></div>
 <div class="explorer-log" id="explorer-log" role="log" aria-live="polite" aria-relevant="additions" aria-label="Réponses du terminal" tabindex="0"></div>
-<form id="explorer-form" class="commandline"><label class="prompt" for="explorer-command">visiteur@adem:~$</label><input id="explorer-command" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Commande pour explorer le portfolio" placeholder="Tape aide pour commencer"><button class="artbutton" type="submit" aria-label="Exécuter la commande">↵</button></form>
-<p class="explorer-footer">aide : commandes · cv : mes CV · simple : navigation classique</p>
+<form id="explorer-form" class="commandline"><label class="prompt" for="explorer-command">visiteur@adem:~$</label><input id="explorer-command" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Commande pour explorer le portfolio" placeholder="Tape help pour commencer"><button class="artbutton" type="submit" aria-label="Exécuter la commande">↵</button></form>
+<p class="explorer-footer">help : commandes · cv : mes CV · simple : navigation classique</p>
 </section>
 <dialog id="cv-choice" class="experience-dialog cv-choice" aria-labelledby="cv-choice-title">
 <div class="cv-dialog-header"><p class="dialog-eyebrow">[ TÉLÉCHARGER MON CV ]</p><button type="button" class="theme" id="cv-close" aria-label="Fermer le choix du CV">[ × ]</button></div><h2 id="cv-choice-title">Quel domaine t’intéresse ?</h2><p>Choisis la version du CV à télécharger.</p><div id="simple-cv-options"></div><p class="dialog-footnote">Format PDF · téléchargement direct</p>
@@ -393,11 +396,12 @@ document.getElementById('terminal').onsubmit=event=>{
  const routes={profil:'profil',projets:'projets',parcours:'parcours',contact:'contact',accueil:'accueil'};
  if(cv){downloadCv(cv)}
  else if(cmd==='menu'||cmd==='cv'){showCvMenu()}
- else if(cmd==='aide'||cmd==='help'){terminalOutput.textContent='Commandes :\n1 : télécharger le CV cybersécurité\nmenu / cv : afficher les CV\nprofil · projets · parcours · contact · accueil : naviguer\nbonjour : faire connaissance\nclear : effacer les messages'}
+ else if(cmd==='aide'||cmd==='help'){terminalOutput.textContent='Commandes :\n1 : télécharger le CV cybersécurité\nmenu / cv : afficher les CV\nprofil · projets · parcours · contact · accueil : naviguer\nbonjour : faire connaissance\nclear : effacer les messages\nexit : fermer cet onglet (si autorisé)'}
  else if(cmd==='clear'){terminalOutput.replaceChildren()}
+ else if(cmd==='exit'){requestSiteExit();return}
  else if(routes[cmd]){document.getElementById(routes[cmd]).scrollIntoView();terminalOutput.textContent='> '+cmd+' : section ouverte.'}
  else if(cmd==='bonjour'){terminalOutput.textContent='> Bonjour ! Moi, c’est Adem. Choisis 1 pour télécharger mon CV cybersécurité.'}
- else{terminalOutput.textContent='> Choix inconnu. Saisis 1 pour le CV cybersécurité, menu pour les CV ou aide pour les commandes.'}
+ else{terminalOutput.textContent='> Choix inconnu. Saisis 1 pour le CV cybersécurité, menu pour les CV ou help pour les commandes.'}
 };
 </script><script src="experience.js"></script>
 </body></html>

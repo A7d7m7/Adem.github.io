@@ -1,5 +1,6 @@
 // Both experiences use the same portfolio content and CV catalog.
 let experienceMode='intro';
+let introTimer=null;
 const choiceDialog=document.getElementById('experience-choice');
 const cvChoiceDialog=document.getElementById('cv-choice');
 const workspace=document.getElementById('terminal-experience');
@@ -35,14 +36,19 @@ function appendTerminalEntry(command,text,links=[]){
  return entry;
 }
 function terminalWelcome(){
- appendTerminalEntry('',"ADEM MAKHTOUR / PORTFOLIO\n\nBienvenue dans mon univers. Ici, tout se découvre au terminal.\n\nTape aide pour afficher les commandes ou commence par whoami.\nPour mon CV : cv, puis le numéro du domaine.\nPour revenir aux sections : simple.");
+ appendTerminalEntry('',"ADEM MAKHTOUR / PORTFOLIO\n\nBienvenue dans mon univers. Ici, tout se découvre au terminal.\n\nTape help pour afficher les commandes ou commence par whoami.\nPour mon CV : cv, puis le numéro du domaine.\nPour revenir aux sections : simple.");
 }
 function selectExperience(mode){
  experienceMode=mode;
+ if(introTimer!==null){clearTimeout(introTimer);introTimer=null}
+ if(cvChoiceDialog.open)cvChoiceDialog.close();
  if(choiceDialog.open)choiceDialog.close();
  document.body.classList.remove('experience-intro','simple-experience','terminal-experience');
  document.body.classList.add(mode+'-experience');
  workspace.hidden=mode!=='terminal';modeSwitch.hidden=false;
+ modeSwitch.setAttribute('aria-label',mode==='terminal'?'Passer en mode simple':'Passer en mode terminal');
+ modeSwitch.title=modeSwitch.getAttribute('aria-label');
+ document.getElementById('exit-status').hidden=true;
  document.querySelector('main').inert=mode==='terminal';
  window.scrollTo({top:0,behavior:'instant'});
  fieldSize();sizeOrb();previousFrame=-1;configureMotion();schedule();
@@ -54,14 +60,18 @@ function selectExperience(mode){
  }
 }
 function openExperienceChoice(){
+ if(experienceMode!=='intro')return;
  if(cvChoiceDialog.open)cvChoiceDialog.close();
  if(!choiceDialog.open)choiceDialog.showModal();
 }
 for(const button of document.querySelectorAll('[data-experience]'))button.addEventListener('click',()=>selectExperience(button.dataset.experience));
-modeSwitch.addEventListener('click',openExperienceChoice);
+function toggleExperience(){selectExperience(experienceMode==='terminal'?'simple':'terminal')}
+modeSwitch.addEventListener('click',toggleExperience);
+document.getElementById('simple-terminal-button').addEventListener('click',()=>selectExperience('terminal'));
+document.getElementById('simple-exit-button').addEventListener('click',()=>requestSiteExit());
 choiceDialog.addEventListener('cancel',event=>{event.preventDefault();selectExperience(experienceMode==='intro'?'simple':experienceMode)});
 // Keep the full name visible before asking the visitor to choose.
-setTimeout(()=>{if(experienceMode==='intro')openExperienceChoice()},reducedQuery.matches?400:1800);
+introTimer=setTimeout(()=>{introTimer=null;if(experienceMode==='intro')openExperienceChoice()},reducedQuery.matches?400:1800);
 
 function openCvDialog(){
  if(!cvChoiceDialog.open)cvChoiceDialog.showModal();
@@ -79,15 +89,29 @@ function downloadExplorerCv(cv,command){
  const entry=appendTerminalEntry(command,'Téléchargement demandé : CV '+cv.domain+'.\nSi le téléchargement ne démarre pas, utilise le lien ci-dessous.',[{label:'Télécharger le PDF',href:cv.file,download:cv.downloadName}]);
  entry.querySelector('a').click();
 }
+// Browsers may only allow scripts to close tabs opened by scripts.
+function requestSiteExit(command){
+ const terminalMode=experienceMode==='terminal';
+ if(terminalMode)appendTerminalEntry(command||'exit','Fermeture de l’onglet demandée…');
+ else{const status=document.getElementById('exit-status');status.hidden=false;status.textContent='Fermeture de l’onglet demandée…'}
+ try{window.close()}catch(error){/* Show the same manual-close fallback below. */}
+ setTimeout(()=>{
+  if(window.closed)return;
+  const shortcut=navigator.platform.includes('Mac')?'⌘ + W':'Ctrl + W';
+  const message='Le navigateur ne permet pas à ce site de fermer cet onglet. Utilise '+shortcut+' ou la croix de l’onglet.';
+  if(terminalMode)appendTerminalEntry('',message);
+  else{const status=document.getElementById('exit-status');status.textContent=message;status.hidden=false}
+ },400);
+}
 function runExplorerCommand(raw){
  const value=raw.trim();if(!value)return;
  commandHistory.push(value);historyPosition=commandHistory.length;
  const command=value.toLocaleLowerCase('fr').replace(/\s+/g,' ');
- const aliases={'cat profil.txt':'profil','cat competences.txt':'competences','cat parcours.log':'parcours','cat contact.txt':'contact','ls':'aide','help':'aide','compétences':'competences','formation':'formations','intérêts':'interets','cv cyber':'cv 1','cv cybersecurite':'cv 1','cv cybersécurité':'cv 1'};
+ const aliases={'cat profil.txt':'profil','cat competences.txt':'competences','cat parcours.log':'parcours','cat contact.txt':'contact','ls':'help','aide':'help','compétences':'competences','formation':'formations','intérêts':'interets','cv cyber':'cv 1','cv cybersecurite':'cv 1','cv cybersécurité':'cv 1'};
  const cmd=aliases[command]||command;
  const chosen=CV_CATALOG.find(cv=>cv.id===cmd||'cv '+cv.id===cmd);
  if(chosen){downloadExplorerCv(chosen,value);return}
- if(cmd==='aide')appendTerminalEntry(value,'COMMANDES\n\nwhoami / profil   Mon profil et ma recherche de stage\ncompetences       Réseaux, sécurité, programmation et web\nprojets           Liste de mes 6 projets\nprojets 1         Détails du projet numéro 1\nparcours          Expérience et formations\nformations        Mon parcours universitaire\nctf               Pratique et résultats en CTF\ninterets          Langues, musique et sports\ncontact           E-mail et liens professionnels\ncv                Choisir un CV par domaine\nclear             Effacer le terminal\nhistory           Historique des commandes\nsimple            Afficher le portfolio classique\nmode              Changer de mode\n\nLes flèches ↑ et ↓ permettent de retrouver tes commandes.');
+ if(cmd==='help')appendTerminalEntry(value,'COMMANDES\n\nhelp / aide       Afficher les commandes\nwhoami / profil   Mon profil et ma recherche de stage\ncompetences       Réseaux, sécurité, programmation et web\nprojets           Liste de mes 6 projets\nprojets 1         Détails du projet numéro 1\nparcours          Expérience et formations\nformations        Mon parcours universitaire\nctf               Pratique et résultats en CTF\ninterets          Langues, musique et sports\ncontact           E-mail et liens professionnels\ncv                Choisir un CV par domaine\nclear             Effacer le terminal\nhistory           Historique des commandes\nsimple            Afficher le portfolio classique\nmode              Passer directement au mode simple\nexit              Fermer cet onglet (si le navigateur l’autorise)\n\nLes flèches ↑ et ↓ permettent de retrouver tes commandes.');
  else if(cmd==='whoami'||cmd==='profil')appendTerminalEntry(value,profileText+'\n\nSTAGE / 4 À 6 MOIS / DÈS AVRIL 2027\nCréteil (94) · Cybersécurité, réseaux et systèmes.');
  else if(cmd==='competences')appendTerminalEntry(value,skillText);
  else if(cmd==='projets')appendTerminalEntry(value,projectContent.map((project,i)=>(i+1)+'. '+project.title+'\n   '+project.description+'\n   '+project.tools).join('\n\n')+'\n\nTape projets suivi du numéro pour en savoir plus.');
@@ -104,9 +128,10 @@ function runExplorerCommand(raw){
  else if(cmd==='clear')explorerLog.replaceChildren();
  else if(cmd==='history')appendTerminalEntry(value,commandHistory.map((item,i)=>(i+1)+'  '+item).join('\n'));
  else if(cmd==='simple'){selectExperience('simple');return}
- else if(cmd==='mode'){openExperienceChoice();return}
+ else if(cmd==='mode'){toggleExperience();return}
+ else if(cmd==='exit'){requestSiteExit(value);return}
  else if(cmd==='bonjour')appendTerminalEntry(value,'Bonjour ! Moi, c’est Adem. Tape whoami pour faire connaissance.');
- else appendTerminalEntry(value,'Commande inconnue. Tape aide pour découvrir les commandes disponibles.');
+ else appendTerminalEntry(value,'Commande inconnue. Tape help pour découvrir les commandes disponibles.');
 }
 document.getElementById('explorer-form').addEventListener('submit',event=>{event.preventDefault();const value=explorerInput.value;explorerInput.value='';runExplorerCommand(value)});
 explorerInput.addEventListener('keydown',event=>{

@@ -25,14 +25,26 @@
 .terminal-workspace{display:flex;flex-direction:column;max-width:1100px;width:calc(100% - 64px);height:calc(100svh - 116px);min-height:330px;margin:22px auto;padding:0;border:1px dashed var(--line);background:color-mix(in srgb,var(--bg) 96%,transparent)}
 .explorer-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px dashed var(--line);padding:17px 22px;flex-shrink:0}
 .explorer-heading h1{font:14px/1.5 'Courier New',monospace;margin:0;color:var(--ink);letter-spacing:0}.explorer-heading h1 span{color:var(--acid);font-size:11px}.explorer-indicator{color:var(--muted);font-size:9px;white-space:nowrap}
-.explorer-log{flex:1;overflow:auto;overscroll-behavior:contain;padding:20px 22px;min-height:0;scrollbar-color:var(--line) var(--bg);font-size:13px;line-height:1.8}
+.explorer-log{flex:1;overflow:auto;overscroll-behavior:contain;padding:20px 22px;min-height:0;scrollbar-color:var(--acid) var(--panel);scrollbar-width:thin;scrollbar-gutter:stable;font-size:13px;line-height:1.8}
+.explorer-log::-webkit-scrollbar{width:8px;height:8px}
+.explorer-log::-webkit-scrollbar-track{background:var(--panel);border-left:1px solid var(--line)}
+.explorer-log::-webkit-scrollbar-thumb{background:var(--acid);border:2px solid var(--panel);border-radius:8px}
+.explorer-log::-webkit-scrollbar-thumb:hover{background:var(--ink)}
+.explorer-log::-webkit-scrollbar-corner{background:var(--panel)}
 .explorer-entry{margin-bottom:24px}.explorer-command-echo{color:var(--acid);font-size:11px;margin:0 0 8px;overflow-wrap:anywhere}
 .explorer-output{white-space:pre-wrap;overflow-wrap:anywhere;margin:0;color:var(--ink);font:inherit;line-height:1.8}.explorer-entry a{color:var(--acid);border-bottom:1px dashed var(--acid);overflow-wrap:anywhere}.explorer-entry .explorer-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:12px}
 .terminal-workspace>.commandline{padding:18px 22px;border-top:1px dashed var(--line);flex-shrink:0;align-items:center;flex-wrap:nowrap}.terminal-workspace input{font-size:13px}.terminal-workspace .artbutton{padding:4px 9px;font-size:15px}.explorer-footer{font-size:9px;color:var(--muted);margin:0;padding:0 22px 14px;flex-shrink:0}
+.simple-actions{display:none;position:fixed;right:20px;bottom:18px;z-index:8;gap:8px;align-items:center}
+.simple-experience .simple-actions{display:flex}.simple-experience{padding-bottom:68px}
+.simple-actions button{background:var(--bg);color:var(--acid);font:11px/1.4 'Courier New',monospace;border:1px dashed var(--line);padding:10px 12px;cursor:pointer;box-shadow:0 3px 18px #0003}
+.simple-actions button:hover,.simple-actions button:focus-visible{border-color:var(--acid);background:var(--panel)}
+#identity-name:focus{outline:none}
+.exit-status{position:fixed;right:20px;bottom:70px;z-index:9;width:min(365px,calc(100% - 36px));background:var(--panel);color:var(--ink);border:1px dashed var(--acid);padding:15px;font:12px/1.7 'Courier New',monospace;margin:0}
 @media(max-width:650px){
  .experience-intro .scroll-scene,.experience-intro .stage{height:calc(100svh - 64px)}
  .experience-dialog{padding:23px 19px}.experience-dialog h2{font-size:24px}.experience-option{padding:15px 12px;grid-template-columns:38px 1fr;gap:5px 10px}.experience-option strong{font-size:12px}.experience-option small{font-size:10px}
  .terminal-workspace{width:calc(100% - 24px);margin:12px auto;height:calc(100svh - 88px);min-height:250px}.explorer-heading{padding:13px 12px;gap:10px}.explorer-heading h1{font-size:12px}.explorer-heading h1 span{display:block;font-size:10px}.explorer-indicator{font-size:8px}.explorer-log{padding:16px 12px;font-size:12px}.terminal-workspace>.commandline{padding:14px 12px;gap:7px}.terminal-workspace input{font-size:12px}.terminal-workspace .prompt{font-size:9px}.explorer-footer{font-size:8px;padding:0 12px 12px}
  .nav{gap:7px}.nav #mode-switch{font-size:8px;padding:6px}.simple-experience header nav{gap:7px}.simple-experience header nav a{font-size:8px}.cv-domain-link{padding:16px}
+ .simple-actions{right:12px;bottom:12px;gap:6px}.simple-actions button{font-size:10px;padding:9px 10px}.exit-status{right:12px;bottom:59px;font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){.experience-dialog::backdrop{backdrop-filter:none}}
