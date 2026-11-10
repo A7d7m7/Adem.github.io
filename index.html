@@ -73,6 +73,10 @@ body.light .identity .ascii-title{color:#99172c;text-shadow:0 0 2px #ff7385,0 0 
 @media(max-width:650px){.orb-shell{top:43%;width:min(92vw,66vh)}}
 @media(prefers-reduced-motion:reduce){.orb-shell{top:32%;will-change:auto}}
 
+
+#cv-terminal{scroll-margin-top:100px;text-align:left;padding:0;overflow:hidden}.terminal-head{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px dashed var(--line);font-size:11px;color:var(--acid);background:var(--panel)}.terminal-mode{margin-left:auto;color:var(--muted);font-size:9px}.terminal-menu{padding:18px 16px 6px}.terminal-welcome{margin:0 0 14px!important;color:var(--ink)!important;font-size:12px}.cv-option{display:flex;align-items:center;gap:12px;width:100%;border:1px dashed var(--line);background:transparent;color:var(--ink);text-align:left;font:inherit;padding:13px 14px;cursor:pointer}.cv-option:hover,.cv-option:focus-visible{background:var(--panel);border-color:var(--acid)}.cv-option-number{color:var(--acid);font-weight:bold}.cv-option-type{margin-left:auto;color:var(--muted);font-size:10px}.terminal-help{font-size:10px!important;line-height:1.8;color:var(--muted)!important;margin:14px 0!important}.terminal-help span{opacity:.8}#cv-terminal #response{margin:0 16px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:11px}#cv-terminal #response:not(:empty){padding:12px 0;border-top:1px dashed var(--line)}#cv-terminal #response a{display:inline-block;margin-top:8px;color:var(--acid);border-bottom:1px dashed var(--acid)}#cv-terminal .commandline{padding:16px;border-top:1px dashed var(--line)}#cv-terminal noscript p{padding:0 16px}.cv-selection{color:var(--acid)}
+@media(max-width:650px){.terminal-head{gap:8px;padding:11px 12px;font-size:10px}.terminal-mode{font-size:8px}.terminal-menu{padding:14px 12px 4px}.terminal-welcome{font-size:11px}.cv-option{font-size:11px;padding:12px 10px;gap:9px}#cv-terminal .commandline{padding:13px 12px}#cv-terminal #response{margin:0 12px;font-size:10px}.terminal-help{font-size:9px!important}}
+
 </style></head>
 <body>
 <pre class="world" id="ascii" role="img" aria-label="Chemin ASCII rouge en perspective, animé en continu et suivant le défilement"></pre>
@@ -95,7 +99,7 @@ body.light .identity .ascii-title{color:#99172c;text-shadow:0 0 2px #ff7385,0 0 
 # # # ##### ###   #####   #   #   # #   # #### 
 #   # #   # #  #  #   #   #   #   # #   # #  # 
 #   # #   # #   # #   #   #    ###   ###  #   #</pre></h1><p class="identity-subtitle">CYBERSÉCURITÉ / DÉVELOPPEMENT</p></div>
-<div class="hero-details" id="hero-details"><p class="intro">Étudiant en L3 informatique à l’UPEC.<br>J’explore les réseaux, les systèmes et la sécurité à travers des projets concrets et les CTF.</p><p class="availability">[ STAGE / 4 À 6 MOIS / DÈS AVRIL 2027 ]</p><div class="hero-actions"><a class="primary" href="#projets">[ explorer mes projets ↓ ]</a><a class="textlink" href="cv-adem-makhtour.pdf" download>[ télécharger mon CV ]</a></div></div>
+<div class="hero-details" id="hero-details"><p class="intro">Étudiant en L3 informatique à l’UPEC.<br>J’explore les réseaux, les systèmes et la sécurité à travers des projets concrets et les CTF.</p><p class="availability">[ STAGE / 4 À 6 MOIS / DÈS AVRIL 2027 ]</p><div class="hero-actions"><a class="primary" href="#projets">[ explorer mes projets ↓ ]</a><a class="textlink" href="#cv-terminal" data-open-cv>[ choisir mon CV ]</a></div></div>
 <div class="scene-caption"><span id="scene-label">01 / LA MATIÈRE</span><span id="scene-text">Tout commence par un caractère.</span></div>
 <div class="stage-bottom"><span id="scene-bar" aria-hidden="true">[....................]</span><span>SCROLL ↓ <span id="scene-percent">000</span>%</span><button id="pause" class="artbutton" aria-pressed="false">[ pause ]</button></div>
 </div></div>
@@ -162,7 +166,13 @@ body.light .identity .ascii-title{color:#99172c;text-shadow:0 0 2px #ff7385,0 0 
 <section class="contact" id="contact"><pre aria-hidden="true">+--------------------------------+
 |  NEXT STEP / STAGE CYBERSEC     |
 |        &gt; prenons_contact_      |
-+--------------------------------+</pre><h2>Analyser. Sécuriser. Contribuer.</h2><p>Je recherche un stage de 4 à 6 mois dès avril 2027, pour contribuer à des missions de détection, d’analyse et de sécurisation des systèmes.</p><a class="email-link" href="mailto:maktouradem@gmail.com">maktouradem@gmail.com ↗</a><p class="contact-location">Créteil (94) · Permis B · <a href="tel:+33678533800">+33 6 78 53 38 00</a></p><div class="social-links"><a href="https://github.com/A7d7m7" target="_blank" rel="noopener noreferrer">[ GitHub ↗ ]</a><a href="https://www.linkedin.com/in/makhtour-adem" target="_blank" rel="noopener noreferrer">[ LinkedIn ↗ ]</a><a href="cv-adem-makhtour.pdf" download>[ télécharger mon CV ↓ ]</a></div><div class="terminal"><p id="response" role="status" aria-live="polite"></p><form class="commandline" id="terminal"><label class="prompt" for="command">visiteur@adem:~$</label><input id="command" autocomplete="off" spellcheck="false" aria-label="Commande du terminal" placeholder="Tape aide puis Entrée"><button class="artbutton" type="submit" aria-label="Exécuter la commande">↵</button></form></div></section>
++--------------------------------+</pre><h2>Analyser. Sécuriser. Contribuer.</h2><p>Je recherche un stage de 4 à 6 mois dès avril 2027, pour contribuer à des missions de détection, d’analyse et de sécurisation des systèmes.</p><a class="email-link" href="mailto:maktouradem@gmail.com">maktouradem@gmail.com ↗</a><p class="contact-location">Créteil (94) · Permis B · <a href="tel:+33678533800">+33 6 78 53 38 00</a></p><div class="social-links"><a href="https://github.com/A7d7m7" target="_blank" rel="noopener noreferrer">[ GitHub ↗ ]</a><a href="https://www.linkedin.com/in/makhtour-adem" target="_blank" rel="noopener noreferrer">[ LinkedIn ↗ ]</a><a href="#cv-terminal" data-open-cv>[ choisir mon CV ↓ ]</a></div><div class="terminal" id="cv-terminal" aria-label="Terminal de téléchargement des CV">
+<div class="terminal-head"><span aria-hidden="true">[ &gt;_ ]</span><span>cv_download.sh</span><span class="terminal-mode">PDF / téléchargement</span></div>
+<div class="terminal-menu"><p class="terminal-welcome">Choisis le CV qui correspond à ton domaine.</p><div id="cv-options" aria-label="CV disponibles"></div><p class="terminal-help">Saisis un numéro puis Entrée, ou sélectionne une option.<br><span>menu : afficher les CV · aide : commandes disponibles</span></p></div>
+<p id="response" role="status" aria-live="polite" aria-atomic="true"></p>
+<form class="commandline" id="terminal"><label class="prompt" for="command">visiteur@adem:~$</label><input id="command" autocomplete="off" spellcheck="false" aria-label="Numéro du CV ou commande du terminal" placeholder="1 : CV cybersécurité"><button class="artbutton" type="submit" aria-label="Exécuter la commande">↵</button></form>
+<noscript><p><a href="cv-adem-makhtour.pdf" download="CV-Adem-Makhtour-Cybersecurite.pdf">Télécharger le CV cybersécurité (PDF)</a></p></noscript>
+</div></section>
 </main><div class="wrap"><footer><span>© <span id="year"></span> Adem Makhtour · Tous caractères compris.</span><a href="#accueil">Retour en haut ↑</a></footer></div>
 <!-- Motion 14.9.1 — bundled locally, no CDN request at runtime. -->
 <script id="motion-library" data-version="14.9.1">
@@ -328,5 +338,44 @@ function syncMotion(){
 document.addEventListener('visibilitychange',syncMotion);
 configureMotion();updateScroll();syncMotion();
 document.getElementById('year').textContent=new Date().getFullYear();const theme=document.getElementById('theme');theme.onclick=()=>{const light=document.body.classList.toggle('light');drawOrb(motionTime);theme.textContent=light?'[ sombre ↗ ]':'[ clair ↗ ]';theme.setAttribute('aria-label',light?'Activer le thème sombre':'Activer le thème clair')};
-document.getElementById('terminal').onsubmit=e=>{e.preventDefault();const input=document.getElementById('command'),cmd=input.value.trim().toLowerCase(),out=document.getElementById('response');input.value='';if(!cmd)return;const routes={profil:'profil',projets:'projets',parcours:'parcours',contact:'contact',accueil:'accueil'};if(routes[cmd]){document.getElementById(routes[cmd]).scrollIntoView();out.textContent='> '+cmd+' : section ouverte.'}else if(cmd==='aide'||cmd==='help'){out.textContent='Commandes : profil · projets · parcours · contact · accueil · bonjour · clear'}else if(cmd==='clear'){out.textContent=''}else if(cmd==='bonjour'){out.textContent='> Bonjour ! Moi, c’est Adem. Bienvenue dans mon univers ASCII :)'}else{out.textContent='> Commande inconnue. Tape aide pour explorer le portfolio.'}};
+// Add future CV variants here once their PDFs are available.
+const CV_CATALOG=[
+ {id:'1',domain:'Cybersécurité',file:'cv-adem-makhtour.pdf',downloadName:'CV-Adem-Makhtour-Cybersecurite.pdf'}
+];
+const terminalInput=document.getElementById('command'),terminalOutput=document.getElementById('response');
+function showCvMenu(){
+ terminalOutput.replaceChildren();
+ const intro=document.createElement('span');intro.textContent='> CV disponibles :\n'+CV_CATALOG.map(cv=>cv.id+'. '+cv.domain+' (PDF)').join('\n')+'\nSaisis le numéro de ton choix.';
+ terminalOutput.append(intro);
+}
+function downloadCv(cv){
+ terminalOutput.replaceChildren();
+ const message=document.createElement('span');message.textContent='> '+cv.domain+' sélectionné. Téléchargement demandé.\nSi ton navigateur ne le lance pas, utilise ce lien :\n';
+ const link=document.createElement('a');link.href=cv.file;link.download=cv.downloadName;link.textContent='Télécharger le CV '+cv.domain+' (PDF)';
+ terminalOutput.append(message,link);
+ link.click();
+}
+const cvOptions=document.getElementById('cv-options');
+for(const cv of CV_CATALOG){
+ const button=document.createElement('button');button.type='button';button.className='cv-option';button.dataset.cvId=cv.id;
+ const number=document.createElement('span');number.className='cv-option-number';number.textContent='['+cv.id+']';
+ const label=document.createElement('span');label.textContent=cv.domain;
+ const format=document.createElement('span');format.className='cv-option-type';format.textContent='PDF ↓';
+ button.append(number,label,format);button.addEventListener('click',()=>downloadCv(cv));cvOptions.append(button);
+}
+for(const shortcut of document.querySelectorAll('[data-open-cv]')){
+ shortcut.addEventListener('click',()=>{showCvMenu();terminalInput.focus({preventScroll:true})});
+}
+document.getElementById('terminal').onsubmit=event=>{
+ event.preventDefault();const cmd=terminalInput.value.trim().toLocaleLowerCase('fr');terminalInput.value='';if(!cmd)return;
+ const cv=CV_CATALOG.find(item=>item.id===cmd);
+ const routes={profil:'profil',projets:'projets',parcours:'parcours',contact:'contact',accueil:'accueil'};
+ if(cv){downloadCv(cv)}
+ else if(cmd==='menu'||cmd==='cv'){showCvMenu()}
+ else if(cmd==='aide'||cmd==='help'){terminalOutput.textContent='Commandes :\n1 : télécharger le CV cybersécurité\nmenu / cv : afficher les CV\nprofil · projets · parcours · contact · accueil : naviguer\nbonjour : faire connaissance\nclear : effacer les messages'}
+ else if(cmd==='clear'){terminalOutput.replaceChildren()}
+ else if(routes[cmd]){document.getElementById(routes[cmd]).scrollIntoView();terminalOutput.textContent='> '+cmd+' : section ouverte.'}
+ else if(cmd==='bonjour'){terminalOutput.textContent='> Bonjour ! Moi, c’est Adem. Choisis 1 pour télécharger mon CV cybersécurité.'}
+ else{terminalOutput.textContent='> Choix inconnu. Saisis 1 pour le CV cybersécurité, menu pour les CV ou aide pour les commandes.'}
+};
 </script></body></html>
